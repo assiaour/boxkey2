@@ -8,14 +8,14 @@ const PORT = process.env.PORT || 3000;
 
 // Security middleware
 app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : '*',
+  origin: '*', // Allow all origins for development
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/password-verification', {
+// Connect to MongoDB Atlas (free tier)
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://your-username:your-password@cluster0.mongodb.net/box-key?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -92,6 +92,7 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 }); 

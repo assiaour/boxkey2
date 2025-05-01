@@ -3,7 +3,7 @@ services:
     name: box-key
     env: node
     buildCommand: npm install
-    startCommand: node src/index.js
+    startCommand: node index.js
     envVars:
       - key: NODE_ENV
         value: production
