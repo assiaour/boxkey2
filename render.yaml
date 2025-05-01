@@ -10,5 +10,9 @@ services:
         value: production
       - key: PORT
         value: 10000
+      - key: MONGODB_USERNAME
+        value: ouriemchiassia0202
+      - key: MONGODB_PASSWORD
+        value: Mbl44ZYxYpsmWRaZ
       - key: MONGODB_URI
         value: mongodb+srv://ouriemchiassia0202:Mbl44ZYxYpsmWRaZ@box-key.edzawt3.mongodb.net/box-key?retryWrites=true&w=majority 
