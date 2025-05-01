@@ -9,4 +9,6 @@ services:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 10000 
+        value: 10000
+      - key: MONGODB_URI
+        value: mongodb+srv://ouriemchiassia0202:Mbl44ZYxYpsmWRaZ@box-key.edzawt3.mongodb.net/box-key?retryWrites=true&w=majority 
