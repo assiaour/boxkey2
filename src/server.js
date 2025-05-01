@@ -14,10 +14,20 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Connect to MongoDB Atlas (free tier)
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://your-username:your-password@cluster0.mongodb.net/box-key?retryWrites=true&w=majority', {
+// Connect to MongoDB Atlas
+if (!process.env.MONGODB_URI) {
+  console.error('MONGODB_URI environment variable is not set');
+  process.exit(1);
+}
+
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => {
+  console.error('MongoDB connection error:', err);
+  process.exit(1);
 });
 
 // Password Schema
