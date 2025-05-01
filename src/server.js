@@ -14,18 +14,8 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Check for required environment variables
-const requiredEnvVars = ['MONGODB_USERNAME', 'MONGODB_PASSWORD'];
-for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
-    console.error(`${envVar} environment variable is not set`);
-    process.exit(1);
-  }
-}
-
 // Connect to MongoDB Atlas
-const mongoUri = 'mongodb+srv://ouriemchiassia0202:ouriemchiassia0202@box-key.edzawt3.mongodb.net/';
-mongoose.connect(mongoUri, {
+mongoose.connect('mongodb+srv://ouriemchiassia0202:ouriemchiassia0202@box-key.edzawt3.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
