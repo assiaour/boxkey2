@@ -15,7 +15,8 @@ app.use(cors({
 app.use(express.json());
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://ouriemchiassia0202:ouriemchiassia0202@box-key.edzawt3.mongodb.net/box-key?retryWrites=true&w=majority', {
+const mongoUri = process.env.MONGODB_URI || 'mongodb+srv://ouriemchiassia0202:ouriemchiassia0202@box-key.edzawt3.mongodb.net/box-key?retryWrites=true&w=majority';
+mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
