@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: box-key
+    env: node
+    rootDir: .
+    buildCommand: cd src && npm install
+    startCommand: cd src && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000 
