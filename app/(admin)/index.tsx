@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, Alert,
 import { KeyRound, Clock, Mail, Copy, Check } from 'lucide-react-native';
 import { useAuth } from '../context/AuthContext';
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3000';
+const API_URL = 'https://boxkey.onrender.com';
 
 export default function PasswordGeneratorScreen() {
   const { clients, generatePassword } = useAuth();
@@ -71,6 +71,7 @@ export default function PasswordGeneratorScreen() {
         ]);
       }
     } catch (error) {
+      console.error('Error:', error);
       Alert.alert('Error', 'Failed to generate and store password');
     } finally {
       setIsGenerating(false);

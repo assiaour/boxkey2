@@ -6,25 +6,25 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Security middleware
+// Security middleware with specific CORS settings for local development
 app.use(cors({
-  origin: '*', // Allow all origins for development
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
+  origin: '*',  // Allow all origins temporarily
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: false
 }));
 app.use(express.json());
 
 // Connect to MongoDB Atlas
-const mongoUri = process.env.MONGODB_URI || 'mongodb+srv://ouriemchiassia0202:ouriemchiassia0202@box-key.edzawt3.mongodb.net/box-key?retryWrites=true&w=majority';
-mongoose.connect(mongoUri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => {
-  console.error('MongoDB connection error:', err);
-  process.exit(1);
-});
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('Successfully connected to MongoDB.');
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+    console.log('Connection string used:', process.env.MONGODB_URI);
+  });
 
 // Password Schema
 const passwordSchema = new mongoose.Schema({
